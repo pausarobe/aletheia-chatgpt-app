@@ -7,9 +7,12 @@ export default function ComponentDashboard() {
   const toolOutput = useOpenAiGlobal('toolOutput');
   const component = toolOutput?.name || null;
   console.log('ComponentDashboard toolOutput:', component);
+  const componentDisplay = component ? `<${component}>` : '-';
   return (
-    <div>
-      <p>Component Dashboard {component}</p>
+    <div style={{ padding: '20px' }}>
+      <p>
+        Documentación del componente: <strong>{componentDisplay}</strong>
+      </p>
       <ath-button>Click Me</ath-button>
     </div>
   );

@@ -19,7 +19,7 @@ export function componentDashboardWidgetResource(server: McpServer, js: string, 
             'openai/widgetPrefersBorder': true,
             'openai/widgetDomain': 'https://chatgpt.com',
             'openai/widgetCSP': {
-              connect_domains: ['https://chatgpt.com'],
+              connect_domains: ['https://chatgpt.com', 'https://fonts.googleapis.com'],
               resource_domains: ['https://*.oaistatic.com'],
             },
           },

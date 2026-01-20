@@ -9,7 +9,10 @@ export function componentDashboardTool(registerTool: RegisterToolFn) {
     'component-dashboard',
     {
       title: 'Component Dashboard',
-      description: 'Display the documentation for a Aletheia component.',
+      description:
+        'Display the documentation for a Aletheia component. IMPORTANT: When answering questions about a component, you MUST use ONLY the documentation returned by this tool (structuredContent.markdown). ' +
+        'If the answer is not present, reply: "No tengo esa información en la documentación del sistema de diseño." ' +
+        'Always call this tool before answering component questions.',
       _meta: {
         'openai/outputTemplate': 'ui://widget/component-dashboard.html',
         'openai/toolInvocation/invoking': 'Displaying the board',
@@ -34,10 +37,16 @@ export function componentDashboardTool(registerTool: RegisterToolFn) {
       }
 
       const markdown = fs.readFileSync(docsPath, 'utf8');
+      const RULES =
+        'REGLAS (obligatorio): Responde SOLO usando structuredContent.markdown. ' +
+        'Si no está en la documentación, responde exactamente: "No tengo esa información en la documentación del sistema de diseño."';
 
       return {
-        content: [{ type: 'text' as const, text: markdown }],
-        structuredContent: { name: normalizedName },
+        content: [
+          { type: 'text' as const, text: RULES },
+          { type: 'text' as const, text: markdown },
+        ],
+        structuredContent: { name: normalizedName, markdown, rules: RULES },
       };
     },
   );

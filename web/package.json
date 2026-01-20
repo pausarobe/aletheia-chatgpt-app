@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc --noEmit",
-    "bundle": "npx esbuild \"src/entries/*.tsx\" src/styles.css --bundle --format=esm --outdir=dist --entry-names=[name] --sourcemap",
+    "bundle": "npx esbuild \"src/entries/*.tsx\" src/styles.css --bundle --format=esm --outdir=dist --entry-names=[name] --sourcemap --loader:.ttf=dataurl --loader:.otf=dataurl --loader:.woff=dataurl --loader:.woff2=dataurl --loader:.eot=dataurl --loader:.svg=dataurl",
     "build": "npm run typecheck && npm run bundle && cp index.html dist/index.html",
     "start": "npm run build && npx esbuild src/entries/flight-detail.tsx --bundle --format=esm --outfile=dist/flight-detail.js --servedir=dist --serve=3030 --watch",
     "ladle": "npx ladle serve"

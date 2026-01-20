@@ -1,0 +1,31 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "bundle": "npx esbuild \"src/entries/*.tsx\" --bundle --format=esm --outdir=dist --entry-names=[name] --sourcemap",
+    "build": "npm run typecheck && npm run bundle && cp index.html dist/index.html",
+    "start": "npm run build && npx esbuild src/entries/flight-detail.tsx --bundle --format=esm --outfile=dist/flight-detail.js --servedir=dist --serve=3030 --watch",
+    "ladle": "npx ladle serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ladle/react": "^5.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@aletheia2/core": "file:aletheia2-core-0.0.2.tgz"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "esbuild": "^0.25.12",
+    "typescript": "^5.9.3"
+  }
+}
